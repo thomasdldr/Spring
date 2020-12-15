@@ -68,3 +68,5 @@ public class BuildingController {
         buildingDao.deleteById(id);
     }
 }
+
+/*test*/
