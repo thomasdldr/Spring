@@ -33,7 +33,7 @@ class RoomDaoTest {
         Assertions.assertThat(result)
                 .hasSize(1)
                 .extracting("id","floor")
-                .containsExactly(Tuple.tuple(-10, 1));
+                .containsExactly(Tuple.tuple(-10L, 1));
     }
 
 }

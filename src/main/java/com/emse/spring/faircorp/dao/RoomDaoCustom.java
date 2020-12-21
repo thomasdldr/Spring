@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface RoomDaoCustom {
     List<Room> findRoomByName(String name);
-    List<Room> findRoomById(Long id);
-    
+
 }

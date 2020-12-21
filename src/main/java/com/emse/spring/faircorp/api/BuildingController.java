@@ -36,11 +36,11 @@ public class BuildingController {
         Building building = null;
         // On creation id is not defined
         if (dto.getId() == null) {
-            building = buildingDao.save(new Building());
+            building = buildingDao.save(new Building(dto.getName()));
         }
         else {
             building = buildingDao.getOne(dto.getId());
-
+            building.setName(dto.getName());
         }
         return new BuildingDto(building);
     }
@@ -59,12 +59,12 @@ public class BuildingController {
     public void delete(@PathVariable Long id) {
         List<RoomDto> dtos = roomDao.findAll().stream().map(RoomDto::new).collect(Collectors.toList());
         for( RoomDto dto : dtos){
-            if (dto.getBuildingId() == id) {
+            if (dto.getBuilding().getId() == id) {
                 heaterDao.deleteHeaters(dto.getId());
                 windowDao.deleteWindows(dto.getId());
                 roomDao.deleteById(dto.getId());
             }
-         }
+        }
         buildingDao.deleteById(id);
     }
 }

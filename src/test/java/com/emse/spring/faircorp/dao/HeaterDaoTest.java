@@ -21,7 +21,7 @@ class HeaterDaoTest {
 
 
     @Test
-    public void shouldFindAWindow() {
+    public void shouldFindAHeater() {
         Heater heater = heaterDao.getOne(-10L);
         Assertions.assertThat(heater.getName()).isEqualTo("Heater1");
         Assertions.assertThat(heater.getHeaterStatus()).isEqualTo(HeaterStatus.ON);

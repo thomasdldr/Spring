@@ -23,7 +23,11 @@ class BuildingDaoTest {
     @Test
     public void shouldFindWindowsInBuilding() {
         List<Window> result = buildingDao.findWindowInBuilding(-10L);
-        //check
+        Assertions.assertThat(result)
+                .hasSize(2)
+                .extracting("name")
+                .contains("Window 1")
+                .contains("Window 2");
     }
 
 

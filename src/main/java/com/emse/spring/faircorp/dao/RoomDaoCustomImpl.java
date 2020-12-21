@@ -21,13 +21,6 @@ public class RoomDaoCustomImpl implements RoomDaoCustom {
                 .getResultList();
     }
 
-    @Override
-    public List<Room> findRoomById(Long id) {
-        String jpql = "select r from Room r where r.id = :id";
-        return em.createQuery(jpql, Room.class)
-                .setParameter("id", id)
-                .getResultList();
-    }
 
 
 }

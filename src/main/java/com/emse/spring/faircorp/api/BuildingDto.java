@@ -5,13 +5,14 @@ import com.emse.spring.faircorp.model.Room;
 
 public class BuildingDto {
     private Long id;
+    private String name;
 
     public BuildingDto() {
     }
 
     public BuildingDto(Building building) {
         this.id = building.getId();
-
+        this.name = building.getName();
     }
 
     public Long getId() {
@@ -22,4 +23,11 @@ public class BuildingDto {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

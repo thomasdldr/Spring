@@ -1,6 +1,7 @@
 package com.emse.spring.faircorp.dao;
 
-import com.emse.spring.faircorp.model.Room;
+import com.emse.spring.faircorp.model.Building;
+import com.emse.spring.faircorp.model.Building;
 import com.emse.spring.faircorp.model.Window;
 
 import javax.persistence.EntityManager;
