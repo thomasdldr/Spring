@@ -1,5 +1,6 @@
 package com.emse.spring.faircorp.api;
 
+import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
 
@@ -7,8 +8,7 @@ public class WindowDto {
     private Long id;
     private String name;
     private WindowStatus windowStatus;
-    private String roomName;
-    private Long roomId;
+    private RoomDto room; //we have to use a RoomDto and not a Room because otherwise there would be a parameter windows and it would thus create a loop
 
     public WindowDto() {
     }
@@ -17,8 +17,7 @@ public class WindowDto {
         this.id = window.getId();
         this.name = window.getName();
         this.windowStatus = window.getWindowStatus();
-        this.roomName = window.getRoom().getName();
-        this.roomId = window.getRoom().getId();
+        this.room = new RoomDto(window.getRoom());
     }
 
     public Long getId() {
@@ -45,19 +44,12 @@ public class WindowDto {
         this.windowStatus = windowStatus;
     }
 
-    public String getRoomName() {
-        return roomName;
+    public RoomDto getRoom() {
+        return room;
     }
 
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
-    }
-
-    public Long getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Long roomId) {
-        this.roomId = roomId;
+    public void setRoom(RoomDto room) {
+        this.room = room;
     }
 }
+

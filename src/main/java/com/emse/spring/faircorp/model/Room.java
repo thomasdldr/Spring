@@ -25,15 +25,18 @@ public class Room {
     @Column(nullable=false, length=255)
     private Integer floor;
 
+    @ManyToOne
+    @NotNull
+    private Building building;
+
+
     @OneToMany(targetEntity=Window.class, mappedBy="room")
     private Set<Window> windows;
 
     @OneToMany(targetEntity=Heater.class, mappedBy="room")
     private Set<Heater> heaters;
 
-    @ManyToOne
-    @NotNull
-    private Building building;
+
 
 
     public Room() {
