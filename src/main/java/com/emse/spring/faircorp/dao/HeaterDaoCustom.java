@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface HeaterDaoCustom {
     void deleteHeaters(Long id);
-    List<Heater> findHeaters(Long id);
+    List<Heater> findHeatersInRoom(Long id);
 }

@@ -40,27 +40,28 @@ public class RoomController {
         return roomDao.findById(id).map(RoomDto::new).orElse(null); // (7)
     }
 
+    @GetMapping(path = "/{id}/windows")
+    public List<WindowDto> findWindowsinRoom(@PathVariable Long id) {
+        return windowDao.findWindowsInRoom(id).stream().map(WindowDto::new).collect(Collectors.toList());
+    }
+
     @PutMapping(path = "/{id}/switchWindow")
-    public RoomDto switchStatusWindow(@PathVariable Long id, Long windowId) {
+    public RoomDto switchStatusWindow(@PathVariable Long id) {
         Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
         Set<Window> windows = room.getWindows();
         for(Window window : windows){
-            if (window.getId()==windowId){
-                window.setWindowStatus(window.getWindowStatus() == WindowStatus.OPEN ? WindowStatus.CLOSED: WindowStatus.OPEN);
-            }
+            window.setWindowStatus(window.getWindowStatus() == WindowStatus.OPEN ? WindowStatus.CLOSED: WindowStatus.OPEN);
         }
         room.setWindows(windows);
         return new RoomDto(room);
     }
 
     @PutMapping(path = "/{id}/switchHeater")
-    public RoomDto switchStatusHeater(@PathVariable Long id,  Long heaterId) {
+    public RoomDto switchStatusHeater(@PathVariable Long id) {
         Room room = roomDao.findById(id).orElseThrow(IllegalArgumentException::new);
         Set<Heater> heaters = room.getHeaters();
         for(Heater heater : heaters){
-            if (heater.getId()==heaterId){
-                heater.setHeaterStatus(heater.getHeaterStatus() == HeaterStatus.ON ? HeaterStatus.OFF: HeaterStatus.ON);
-            }
+            heater.setHeaterStatus(heater.getHeaterStatus() == HeaterStatus.ON ? HeaterStatus.OFF: HeaterStatus.ON);
         }
         room.setHeaters(heaters);
         return new RoomDto(room);
